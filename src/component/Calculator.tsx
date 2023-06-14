@@ -1,3 +1,9 @@
+import ButtonPanel from "./ButtonPanel";
+import Display from "./Display";
+
 export default function Calculator() {
-  return <div></div>;
+  return <div>
+    <Display />
+    <ButtonPanel />
+  </div>;
 }
