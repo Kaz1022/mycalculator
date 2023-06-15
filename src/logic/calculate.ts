@@ -12,12 +12,11 @@ export default function calculate(button: string, state: State): State {
     return handleDeleteButton(state);
   }
   if (isAllClearButton(button)) {
-
+    return handleAllClearButton();
   }
   if (isEqualButton(button)) {
-    
+    return handleEqualButton(state);
   }
-
 
   return state;
 }
@@ -30,7 +29,7 @@ export interface State {
 }
 
 function isNUmberButton(button: string) {
-  return !isNaN(+button); 
+  return !isNaN(+button);
 }
 
 function handleNumberButton(button: string, state: State): State {
@@ -39,15 +38,15 @@ function handleNumberButton(button: string, state: State): State {
       current: button,
       operand: state.operand,
       operator: state.operator,
-      isNextClear: false
-    }
+      isNextClear: false,
+    };
   }
   return {
     current: state.current + button,
     operand: state.operand,
     operator: state.operator,
-    isNextClear: false
-  }
+    isNextClear: false,
+  };
 }
 
 function isOperatorButton(button: string) {
@@ -55,36 +54,36 @@ function isOperatorButton(button: string) {
 }
 
 function handleOperatorButton(button: string, state: State): State {
-  if (state.operator === null){
+  if (state.operator === null) {
     return {
       current: state.current,
       operand: parseFloat(state.current),
       operator: button,
-      isNextClear: true
-    }
+      isNextClear: true,
+    };
   }
   const nextValue = operate(state);
   return {
     current: `${nextValue}`,
     opperand: nextValue,
     operator: button,
-    isNextClear: true
-  }
+    isNextClear: true,
+  };
 }
 function isDotButton(button: string) {
   return button === ".";
 }
 
 function handleDotButton(state: State): State {
-  if (state.current.indexOf('.') !== -1) {
+  if (state.current.indexOf(".") !== -1) {
     return state;
   }
   return {
     current: state.current + ".",
     operand: state.operand,
     operator: state.operator,
-    isNextClear: false
-  }
+    isNextClear: false,
+  };
 }
 
 function isDeleteButton(button: string) {
@@ -97,13 +96,54 @@ function handleDeleteButton(state: State): State {
       current: "0",
       operand: state.operand,
       operator: state.operator,
-      isNextClear: false
-    }
+      isNextClear: false,
+    };
   }
   return {
     current: state.current.substring(0, state.current.length - 1),
     operand: state.operand,
     operator: state.operator,
-    isNextClear: false
+    isNextClear: false,
+  };
+}
+
+function isAllClearButton(button: string) {
+  return button === "AC";
+}
+
+function handleAllClearButton(): State {
+  return {
+    current: "0",
+    operand: 0,
+    operator: null,
+    isNextClear: false,
+  };
+}
+
+function isEqualButton(button: string) {
+  return button === "=";
+}
+
+function handleEqualButton(state: State): State {
+  if (state.operator === null) {
+    return state;
   }
+  const nextValue = operate(state);
+  return {
+    current: `${nextValue}`,
+    operand: 0,
+    operator: null,
+    isNextClear: true,
+  };
+}
+
+function operate(state: State): number {
+  const current = parseFloat(state.current);
+  if (state.operator === "+") {
+    return state.operand + current;
+  }
+  if (state.operator === "-") {
+    return state.operand - current;
+  }
+  return current;
 }
