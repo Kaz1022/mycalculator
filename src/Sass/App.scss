@@ -6,10 +6,17 @@ $gray: #D9D9D9;
 $boxShadow : 0px 19px 60px rgb(0 0 0 / 8%);
 
 .App {
-  text-align: center;
-  overflow: hidden;
-  color: $base-yellow;   
-  background: $base-green; 
-  font-weight: normal;
-  padding: 0.5rem 3.5rem;
+  height: 100vh;
+  background-color: #e4f9bf;
+  opacity: 0.4;
+  background: radial-gradient(circle, transparent 20%, #e4f9bf 20%, #e4f9bf 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #e4f9bf 20%, #e4f9bf 80%, transparent 80%, transparent) 100px 100px, linear-gradient(#59b858 8px, transparent 8px) 0 -4px, linear-gradient(90deg, #59b858 8px, #e4f9bf 8px) -4px 0;
+  background-size: 200px 200px, 200px 200px, 100px 100px, 100px 100px;
 }
+
+.calc-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+

@@ -16,7 +16,7 @@ export default function Calculator() {
     const nextState = calculate(code, state);
     setState(nextState);
   };
-  return <div>
+  return <div className="calc-container">
     <Display value={state.current} />
     <ButtonPanel buttonHandler={buttonHandler} />
   </div>;
