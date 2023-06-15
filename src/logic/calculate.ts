@@ -33,6 +33,14 @@ function isNUmberButton(button: string) {
 }
 
 function handleNumberButton(button: string, state: State): State {
+  if(state.isNextClear) {
+    return {
+      current: button, 
+      operand: state.operand,
+      operator: state.operator,
+      isNextClear: false
+    }
+  }
   if (state.current === "0") {
     return {
       current: button,
@@ -65,7 +73,7 @@ function handleOperatorButton(button: string, state: State): State {
   const nextValue = operate(state);
   return {
     current: `${nextValue}`,
-    opperand: nextValue,
+    operand: nextValue,
     operator: button,
     isNextClear: true,
   };
