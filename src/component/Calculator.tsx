@@ -3,6 +3,8 @@ import { State } from "../logic/calculate";
 import calculate from "../logic/calculate"
 import ButtonPanel from "./ButtonPanel";
 import Display from "./Display";
+import '../Sass/Calculator.scss';
+
 
 export default function Calculator() {
   const [state, setState] = useState<State>({
