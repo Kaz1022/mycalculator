@@ -78,6 +78,7 @@ function handleOperatorButton(button: string, state: State): State {
     isNextClear: true,
   };
 }
+
 function isDotButton(button: string) {
   return button === ".";
 }
