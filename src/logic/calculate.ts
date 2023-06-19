@@ -42,11 +42,11 @@ export interface State {
   isNextClear: boolean;
 }
 
-function isNUmberButton(button: string) {
+function isNUmberButton(button: string): button is NumberCode{
   return !isNaN(+button);
 }
 
-function handleNumberButton(button: string, state: State): State {
+function handleNumberButton(button: NumberCode, state: State): State {
   if(state.isNextClear) {
     return {
       current: button, 
@@ -71,11 +71,11 @@ function handleNumberButton(button: string, state: State): State {
   };
 }
 
-function isOperatorButton(button: string) {
+function isOperatorButton(button: string): button is Operator {
   return button === "+" || button === "-";
 }
 
-function handleOperatorButton(button: string, state: State): State {
+function handleOperatorButton(button: Operator, state: State): State {
   if (state.operator === null) {
     return {
       current: state.current,
